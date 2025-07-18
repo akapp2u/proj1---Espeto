@@ -1,0 +1,299 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* WF OrderFlow Design System */
+    --background: 20 14% 8%;
+    --foreground: 50 100% 95%;
+    
+    --card: 20 14% 10%;
+    --card-foreground: 50 100% 95%;
+    
+    --primary: 45 100% 60%;
+    --primary-foreground: 20 14% 8%;
+    
+    --secondary: 15 100% 65%;
+    --secondary-foreground: 20 14% 8%;
+    
+    --accent: 45 100% 60%;
+    --accent-foreground: 20 14% 8%;
+    
+    --muted: 20 14% 15%;
+    --muted-foreground: 50 20% 70%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 20 14% 20%;
+    --input: 20 14% 12%;
+    --ring: 45 100% 60%;
+    
+    --radius: 0.75rem;
+    
+    /* Custom WF Variables */
+    --wf-yellow: 45 100% 60%;
+    --wf-orange: 15 100% 65%;
+    --wf-dark: 20 14% 8%;
+    --wf-card: 20 14% 10%;
+    --wf-text: 50 100% 95%;
+    --wf-text-muted: 50 20% 70%;
+    --wf-border: 20 14% 20%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--wf-yellow)), hsl(var(--wf-orange)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--wf-card)), hsl(20 14% 12%));
+    
+    /* Shadows */
+    --shadow-glow: 0 0 30px hsl(var(--wf-yellow) / 0.3);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+  }
+}
+
+@layer components {
+  /* WF OrderFlow Components */
+  .wf-container {
+    @apply w-full max-w-md mx-auto min-h-screen flex flex-col;
+    background: hsl(var(--background));
+  }
+  
+  .wf-header {
+    @apply sticky top-0 z-50 p-4 border-b;
+    background: var(--gradient-card);
+    border-color: hsl(var(--wf-border));
+    box-shadow: var(--shadow-card);
+  }
+  
+  .wf-brand {
+    @apply text-2xl font-bold text-center;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .wf-view {
+    @apply flex-1 p-4;
+  }
+  
+  .wf-button {
+    @apply px-6 py-3 rounded-xl font-semibold text-center transition-all duration-300 transform;
+    background: var(--gradient-primary);
+    color: hsl(var(--primary-foreground));
+    box-shadow: var(--shadow-card);
+  }
+  
+  .wf-button:hover {
+    @apply scale-105;
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .wf-button:active {
+    @apply scale-95;
+  }
+  
+  .wf-card {
+    @apply p-4 rounded-xl border;
+    background: var(--gradient-card);
+    border-color: hsl(var(--wf-border));
+    box-shadow: var(--shadow-card);
+  }
+  
+  .wf-input {
+    @apply w-full px-4 py-3 rounded-xl border bg-input text-foreground placeholder:text-muted-foreground;
+    border-color: hsl(var(--wf-border));
+    background: hsl(var(--input));
+    transition: var(--transition-smooth);
+  }
+  
+  .wf-input:focus {
+    @apply outline-none ring-2;
+    ring-color: hsl(var(--ring));
+    border-color: hsl(var(--ring));
+  }
+  
+  .table-grid {
+    @apply grid gap-3;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+  
+  .table-button {
+    @apply aspect-square flex items-center justify-center text-xl font-bold rounded-xl border-2 transition-all duration-300 transform;
+    background: var(--gradient-card);
+    border-color: hsl(var(--wf-border));
+    color: hsl(var(--foreground));
+  }
+  
+  .table-button:hover {
+    @apply scale-105;
+    border-color: hsl(var(--ring));
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .menu-item {
+    @apply flex items-center gap-4 p-4 rounded-xl border transition-all duration-300;
+    background: var(--gradient-card);
+    border-color: hsl(var(--wf-border));
+  }
+  
+  .menu-item:hover {
+    border-color: hsl(var(--ring));
+    box-shadow: var(--shadow-card);
+  }
+  
+  .menu-item-image {
+    @apply w-16 h-16 rounded-lg object-cover;
+  }
+  
+  .menu-item-info {
+    @apply flex-1;
+  }
+  
+  .menu-item-name {
+    @apply font-semibold text-foreground;
+  }
+  
+  .menu-item-price {
+    @apply text-sm font-bold;
+    color: hsl(var(--wf-yellow));
+  }
+  
+  .menu-item-controls {
+    @apply flex items-center gap-2;
+  }
+  
+  .quantity-button {
+    @apply w-8 h-8 flex items-center justify-center rounded-lg font-bold transition-all duration-200 transform;
+    background: var(--gradient-primary);
+    color: hsl(var(--primary-foreground));
+  }
+  
+  .quantity-button:hover {
+    @apply scale-110;
+  }
+  
+  .quantity-button:active {
+    @apply scale-95;
+  }
+  
+  .quantity-display {
+    @apply w-8 text-center font-bold;
+    color: hsl(var(--foreground));
+  }
+  
+  .fab {
+    @apply rounded-full flex items-center justify-center shadow-lg transition-all duration-300 transform cursor-pointer;
+    background: var(--gradient-primary);
+    color: hsl(var(--primary-foreground));
+    box-shadow: var(--shadow-glow);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    border: none !important;
+    outline: none !important;
+    position: relative !important;
+    z-index: 999999 !important;
+  }
+  
+  .fab:hover {
+    @apply scale-110;
+  }
+  
+  .fab-badge {
+    @apply absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold;
+    background: hsl(var(--destructive));
+    color: hsl(var(--destructive-foreground));
+  }
+  
+  .modal-overlay {
+    @apply fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50;
+  }
+  
+  .modal-content {
+    @apply w-full max-w-md rounded-xl border max-h-[90vh] overflow-hidden;
+    background: var(--gradient-card);
+    border-color: hsl(var(--wf-border));
+    box-shadow: var(--shadow-card);
+  }
+  
+  .modal-header {
+    @apply p-4 border-b;
+    border-color: hsl(var(--wf-border));
+  }
+  
+  .modal-body {
+    @apply p-4 max-h-[40vh] overflow-y-auto;
+  }
+  
+  .modal-footer {
+    @apply p-4 border-t;
+    border-color: hsl(var(--wf-border));
+  }
+  
+  .order-item {
+    @apply flex justify-between items-center py-2 border-b last:border-b-0;
+    border-color: hsl(var(--wf-border));
+  }
+  
+  .order-total {
+    @apply text-xl font-bold text-center py-4;
+    color: hsl(var(--wf-yellow));
+  }
+}
