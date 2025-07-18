@@ -9,8 +9,9 @@ export default defineConfig({
     port: 8080,
   },
   plugins: [
-    react(),
+    react() // A lista de plugins agora só tem plugins.
   ],
+  base: '/proj1---Espeto/', // <-- Certo! "base" está no mesmo nível que "plugins".
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
